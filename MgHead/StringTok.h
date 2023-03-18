@@ -1,6 +1,8 @@
 /*-------------------------------------------------------------------
 StringTok.h: String with Token Operation for Arduino Boards Including Arduino Mega
-Copyright (c) 2016-Forever ACE Lab, Korea.
+Author: ictplusud@gmail.com (Department of Game SW Engineering, Mokwon University)
+
+Copyright ¨Ï 2023-Forever Mokwon Game, Korea.
 All Rights Reserved. Personal and non-commercial purpose only.
 -------------------------------------------------------------------*/
 
@@ -11,7 +13,7 @@ All Rights Reserved. Personal and non-commercial purpose only.
 
 //#define DEF_ARDUINO_MEGA
 #define DEF_DBL_PREC            (6)
-#define SERIAL_WAIT_TIME_MS (50)
+#define SERIAL_WAIT_TIME_MS		(50)
 
 /////////////////////////////////////////////////////////////////////
 class StringTok
@@ -390,10 +392,10 @@ public:
 		return Serial1.available() > 0;
 	}
 	static bool isAvailableSerial2void) {
-	return Serial2.available() > 0;
+		return Serial2.available() > 0;
  }
  static bool isAvailableSerial3void) {
- return Serial3.available() > 0;
+	 return Serial3.available() > 0;
  }
 #endif
 
@@ -842,7 +844,7 @@ inline void printlns(SoftwareSerial& swSerial)
 /*-------------------------------------------------------------------
 Revision Records
 ---------------------------------------------------------------------
-C(2016-12-05)
-R(2018-04-01): the line operations were added.
-R(2018-09-20): the I/O methods were added.
+C(2016-12-05): create for Arduino Sketch
+R(2018-04-01): add line operations
+R(2018-09-20): add extra I/O methods
 -------------------------------------------------------------------*/

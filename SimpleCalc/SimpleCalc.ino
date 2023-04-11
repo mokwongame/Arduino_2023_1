@@ -8,7 +8,7 @@ String input(const String& sTitle) {
   while (Serial.available()) {
     char c = Serial.read();
     sInput += c;
-    delay(10); // Serial 속도와 관계
+    delay(10);  // Serial 속도와 관계
   }
   sInput.trim();
   return sInput;
@@ -21,5 +21,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+  String sX = input("입력 x: ");
+  double x = sX.toDouble();
+  Serial.println(x);
 }

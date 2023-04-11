@@ -45,7 +45,7 @@ double calc(double x, double y, char op) {
     case '+': ans = x + y; break;  // case와 break는 한쌍
     case '-': ans = x - y; break;
     case '%': ans = (int)x % (int)y; break;
-    case '|': ans = (int)x || (int)y;
+    case '|': ans = (int)x || (int)y; break;
     default: Serial.println(String(op) + "은 잘못된 연산자"); ans = 0;
   }
   return ans;
@@ -62,5 +62,9 @@ void loop() {
   double y = inputDouble("입력 y: ");
   char op = inputOp("연산자: ");
   double ans = calc(x, y, op);
-  Serial.println("ans = " + String(ans) + "\n");
+  if (op == '&' || op == '|' || op == '!') {
+    Serial.print("ans = ");
+    printBool(ans);
+    Serial.println("");
+  } else Serial.println("ans = " + String(ans) + "\n");
 }

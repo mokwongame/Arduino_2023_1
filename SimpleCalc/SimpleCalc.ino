@@ -30,6 +30,12 @@ char inputOp(const String& sTitle) {
   return op;
 }
 
+// |&!(논리 연산자) 경우에는 true, false로 출력
+void printBool(double ans) {
+  if (ans == 0) Serial.print("false");
+  else Serial.print("true");
+}
+
 // +-*/*(산술) |&!(논리); !는 x의 부정(not)
 double calc(double x, double y, char op) {
   double ans;
@@ -39,7 +45,7 @@ double calc(double x, double y, char op) {
     case '+': ans = x + y; break;  // case와 break는 한쌍
     case '-': ans = x - y; break;
     case '%': ans = (int)x % (int)y; break;
-    default: Serial.println(op + "은 잘못된 연산자"); ans = 0;
+    default: Serial.println(String(op) + "은 잘못된 연산자"); ans = 0;
   }
   return ans;
 }

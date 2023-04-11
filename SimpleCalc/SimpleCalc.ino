@@ -25,9 +25,23 @@ double inputDouble(const String& sTitle) {
 
 char inputOp(const String& sTitle) {
   String sOp = input(sTitle);
-  char op = sOp[0]; // 0번 위치의 문자를 가져옴
+  char op = sOp[0];  // 0번 위치의 문자를 가져옴
   Serial.println(op);
   return op;
+}
+
+// +-*/*(산술) |&!(논리); !는 x의 부정(not)
+double calc(double x, double y, char op) {
+  double ans;
+  // if (op == '+') ans = x+y;
+  // else if (op == '-') ans = x-y;
+  switch (op) {
+    case '+': ans = x + y; break;  // case와 break는 한쌍
+    case '-': ans = x - y; break;
+    case '%': ans = (int)x % (int)y; break;
+    default: Serial.println(op + "은 잘못된 연산자"); ans = 0;
+  }
+  return ans;
 }
 
 void setup() {
@@ -40,4 +54,6 @@ void loop() {
   double x = inputDouble("입력 x: ");
   double y = inputDouble("입력 y: ");
   char op = inputOp("연산자: ");
+  double ans = calc(x, y, op);
+  Serial.println("ans = " + String(ans) + "\n");
 }

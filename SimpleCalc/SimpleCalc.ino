@@ -45,6 +45,7 @@ double calc(double x, double y, char op) {
     case '+': ans = x + y; break;  // case와 break는 한쌍
     case '-': ans = x - y; break;
     case '%': ans = (int)x % (int)y; break;
+    case '|': ans = (int)x || (int)y;
     default: Serial.println(String(op) + "은 잘못된 연산자"); ans = 0;
   }
   return ans;

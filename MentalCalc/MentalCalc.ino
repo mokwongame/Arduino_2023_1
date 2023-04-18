@@ -24,6 +24,13 @@ String input(const String& sTitle) {
   return sInput;
 }
 
+int inputInt(const String& sTitle) {
+  String sN = input(sTitle);
+  int n = sN.toInt();
+  Serial.println(n);
+  return n;
+}
+
 void printProblem(int a, int b, OpType op) {
   switch (op) {
     case OP_ADD: Serial.println(String(a) + " + " + String(b) + " = ?"); break;
@@ -43,5 +50,5 @@ void loop() {
   int b = random(1, nNumMax + 1);     // 1~nNumMax까지 난수 발생
   OpType op = random(0, nOpMax + 1);  // 0~nOpMax까지 난수 발생
   printProblem(a, b, op);
-  delay(1000);
+  int playAns = inputInt("답은? ");
 }

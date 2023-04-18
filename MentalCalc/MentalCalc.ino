@@ -9,6 +9,7 @@ enum OpType {
 };
 int nNumMax = 20;  // 암산할 최대 자연수
 int nOpMax = OP_SUB;
+int nScore = 0;
 
 String input(const String& sTitle) {
   Serial.print(sTitle);
@@ -58,9 +59,19 @@ void loop() {
   int b = random(1, nNumMax + 1);     // 1~nNumMax까지 난수 발생
   OpType op = random(0, nOpMax + 1);  // 0~nOpMax까지 난수 발생
   printProblem(a, b, op);
-  unsigned long startTime = millis();  // 밀리초 단위로 현재 시간 출력
-  int playAns = inputInt("답은? "); // 사용자 답
+  unsigned long startTime = millis();             // 밀리초 단위로 현재 시간 출력
+  int playAns = inputInt("답은? ");               // 사용자 답
   unsigned long calcTime = millis() - startTime;  // 계산 시간 = 끝 시간 - 시작 시간
   Serial.println("\n암산 시간 = " + String(calcTime / 1e3) + "초");
-  int ans = calcProblem(a, b, op); // 정답
+  int ans = calcProblem(a, b, op);  // 정답
+
+  // 정답 비교
+  if (playAns == ans) {  // 정답
+  nScore++;
+    Serial.println("정답");
+  } else {  // 오답
+  nScore--;
+    Serial.println("오답");
+  }
+  Serial.println("스코어 = " + String(nScore) + "\n");
 }

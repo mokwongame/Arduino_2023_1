@@ -38,6 +38,14 @@ void printProblem(int a, int b, OpType op) {
   }
 }
 
+int calcProblem(int a, int b, OpType op) {
+  switch (op) {
+    case OP_ADD: return a + b;
+    case OP_SUB: return a - b;
+    default: return 0;
+  }
+}
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(SERIAL_RATE);
@@ -50,8 +58,9 @@ void loop() {
   int b = random(1, nNumMax + 1);     // 1~nNumMax까지 난수 발생
   OpType op = random(0, nOpMax + 1);  // 0~nOpMax까지 난수 발생
   printProblem(a, b, op);
-  unsigned long startTime = millis(); // 밀리초 단위로 현재 시간 출력
-  int playAns = inputInt("답은? ");
-  unsigned long calcTime = millis() - startTime; // 계산 시간 = 끝 시간 - 시작 시간
+  unsigned long startTime = millis();  // 밀리초 단위로 현재 시간 출력
+  int playAns = inputInt("답은? "); // 사용자 답
+  unsigned long calcTime = millis() - startTime;  // 계산 시간 = 끝 시간 - 시작 시간
   Serial.println("\n암산 시간 = " + String(calcTime / 1e3) + "초");
+  int ans = calcProblem(a, b, op); // 정답
 }

@@ -1,4 +1,5 @@
 #define SERIAL_RATE (9600)
+#define MAX_RAND_CHAR (26+5) // 알파벳 소문자 + 구두점 기호
 
 String input(const String& sTitle) {
   Serial.print(sTitle);
@@ -17,6 +18,10 @@ String input(const String& sTitle) {
 // 소문자 알파벳이나 구두점 기호(" .,!?")를 반환
 char getRandChar() {
   char ch;
+  int nRand = random(MAX_RAND_CHAR);
+  if (nRand <= 25) ch = (char)(nRand + 'a'); // 알파벳 소문자
+  else if (nRand == 26) ch = ' '; // 공백
+  else if (nRand == 27) ch = '.'; // 마침표
   return ch;
 }
 
@@ -33,11 +38,14 @@ String makeRandWords(int nMaxChar) {
 
 void setup() {
   // put your setup code here, to run once:
-  srand(analogRead(A0));  // 난수 초기화
   Serial.begin(SERIAL_RATE);
+  randomSeed(analogRead(A0));  // 난수 초기화
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   String sRand = makeRandWords(15);
+  Serial.println("문제>" + sRand);
+  String sInput = input("타자>");
+  Serial.println(sInput);
 }

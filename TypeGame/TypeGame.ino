@@ -1,5 +1,5 @@
 #define SERIAL_RATE (9600)
-#define MAX_RAND_CHAR (26+5) // 알파벳 소문자 + 구두점 기호
+#define MAX_RAND_CHAR (26 + 5)  // 알파벳 소문자 + 구두점 기호
 
 String input(const String& sTitle) {
   Serial.print(sTitle);
@@ -19,9 +19,9 @@ String input(const String& sTitle) {
 char getRandChar() {
   char ch;
   int nRand = random(MAX_RAND_CHAR);
-  if (nRand <= 25) ch = (char)(nRand + 'a'); // 알파벳 소문자
-  else if (nRand == 26) ch = ' '; // 공백
-  else if (nRand == 27) ch = '.'; // 마침표
+  if (nRand <= 25) ch = (char)(nRand + 'a');  // 알파벳 소문자
+  else if (nRand == 26) ch = ' ';             // 공백
+  else if (nRand == 27) ch = '.';             // 마침표
   return ch;
 }
 
@@ -36,6 +36,17 @@ String makeRandWords(int nMaxChar) {
   return str;
 }
 
+// &는 reference 의미(변수이지만 포인터처럼 값에 접근 가능)
+int getScore(const String& sRand, const String& sInput) {
+  int nMinLen = min(sRand.length(), sInput.length());
+  int nScore = 0;
+  for (int i = 0; i < nMinLen; i++) {
+    if (sRand[i] == sInput[i]) nScore++;
+    else nScore;
+  }
+  return nScore;
+}
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(SERIAL_RATE);
@@ -48,4 +59,7 @@ void loop() {
   Serial.println("문제>" + sRand);
   String sInput = input("타자>");
   Serial.println(sInput);
+  int nScore = getScore(sRand, sInput);
+  Serial.println("현재 점수 = " + String(nScore) + "\n");
+  // 타자 속도(분당 타수) = nScore/입력 시간(초)*60
 }

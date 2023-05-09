@@ -42,8 +42,14 @@ void loop() {
   while (nInput != BT_NONE) {
     Serial.println("버튼을 누르지 마세요.");
     delay(500);
-    nInput = 
-    getButtonInput();
+    nInput = getButtonInput();
   }
   // 난수 발생, 게임 시작
+  int nRand = random(BT_LEFT, RIGHT_BUTTON + 1);
+  if (nRand == BT_LEFT) Serial.println("왼쪽 버튼을 누르세요.");
+  else Serial.println("오른쪽 버튼을 누르세요.");
+  nInput = getButtonInput();
+  while (nInput == BT_NONE) {
+    nInput = getButtonInput();    
+  }
 }

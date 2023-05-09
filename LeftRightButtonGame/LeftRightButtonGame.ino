@@ -50,6 +50,13 @@ void loop() {
   else Serial.println("오른쪽 버튼을 누르세요.");
   nInput = getButtonInput();
   while (nInput == BT_NONE) {
-    nInput = getButtonInput();    
+    nInput = getButtonInput();
   }
+  // 결과 확인
+  if (nRand == nInput) {
+    Serial.println("성공 ^^");
+  } else {
+    Serial.println("실패 ㅠㅠ");
+  }
+  delay(1000);
 }

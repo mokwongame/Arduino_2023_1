@@ -45,7 +45,7 @@ void loop() {
     nInput = getButtonInput();
   }
   // 난수 발생, 게임 시작
-  int nRand = random(BT_LEFT, RIGHT_BUTTON + 1);
+  int nRand = random(BT_LEFT, BT_RIGHT + 1);
   if (nRand == BT_LEFT) Serial.println("왼쪽 버튼을 누르세요.");
   else Serial.println("오른쪽 버튼을 누르세요.");
   nInput = getButtonInput();

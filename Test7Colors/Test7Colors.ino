@@ -17,14 +17,7 @@ void initLed() {
   pinMode(PIN_B, OUTPUT);
 }
 
-void setup() {
-  // put your setup code here, to run once:
-  initLed();
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-  int nColor = 3;
+void turnRgbLed(int nColor) {
   int nR = nColor & CHECK_R;  // &: 비트 단위 and 연산
   int nG = nColor & CHECK_G;
   int nB = nColor & CHECK_B;
@@ -32,3 +25,21 @@ void loop() {
   digitalWrite(PIN_G, (nG) ? HIGH : LOW);
   digitalWrite(PIN_B, (nB) ? HIGH : LOW);
 }
+
+void setup() {
+  // put your setup code here, to run once:
+  initLed();
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  for (int i = 1; i <= 7; i++)
+  {
+      turnRgbLed(i);
+      delay(500);
+  }
+}
+
+
+
+

@@ -7,6 +7,7 @@
 #define CHECK_B (4)
 #define LEFT_BUTTON (2)
 #define RIGHT_BUTTON (3)
+#define DELAY_LED (200)
 
 enum ButtonType {  // 버튼이 눌러진 상태용 열거형 상수
   BT_NONE,
@@ -52,12 +53,23 @@ ButtonType getButtonInput() {
   return nResult;
 }
 
+void displayLed() {
+  for (int i = 1; i <= 7; i++) {
+    turnRgbLed(i);
+    delay(DELAY_LED);
+  }
+}
+
 void setup() {
   // put your setup code here, to run once:
   initGame();
+  int nInput = getButtonInput();
+  while (nInput == BT_NONE) {
+    displayLed();
+    nInput = getButtonInput();
+  }
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-
 }

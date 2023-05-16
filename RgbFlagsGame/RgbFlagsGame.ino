@@ -85,6 +85,19 @@ void loop() {
     Serial.println("버튼을 누르지 마세요.");
     delay(500);
   }
-  // 게임 시작
+  // 난수 발생, 게임 시작
   Serial.println("RGB 깃발 중의 하나가 표시됩니다.");
+  int nRand = random(BT_LEFT, BT_BOTH + 1);  // 1, 2, 3
+  if (nRand == 1) turnRgbLed(1);              // R
+  else if (nRand == 2) turnRgbLed(4);        // B
+  else turnRgbLed(2);                        // G
+  nInput = getButtonInput();
+  while (nInput == BT_NONE) {
+    nInput = getButtonInput();
+  }
+  if (nInput == nRand) {
+    Serial.println("성공");
+  } else {
+    Serial.println("실패");
+  }
 }

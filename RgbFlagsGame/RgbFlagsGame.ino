@@ -39,6 +39,12 @@ void turnRgbLed(int nColor) {
   digitalWrite(PIN_B, (nB) ? HIGH : LOW);
 }
 
+void turnOffLed() {
+  digitalWrite(PIN_R, LOW);
+  digitalWrite(PIN_G, LOW);
+  digitalWrite(PIN_B, LOW);
+}
+
 ButtonType getButtonInput() {
   int nInputLeft = digitalRead(LEFT_BUTTON);
   int nInputRight = digitalRead(RIGHT_BUTTON);
@@ -68,8 +74,17 @@ void setup() {
     displayLed();
     nInput = getButtonInput();
   }
+  turnOffLed();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  int nInput = getButtonInput();
+  while (nInput != BT_NONE) {
+    nInput = getButtonInput();
+    Serial.println("버튼을 누르지 마세요.");
+    delay(500);
+  }
+  // 게임 시작
+  Serial.println("RGB 깃발 중의 하나가 표시됩니다.");
 }
